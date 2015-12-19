@@ -22,4 +22,4 @@ EXPOSE 8080 6881
 USER utorrent
 
 WORKDIR /utorrent
-CMD /start.sh
+CMD ["/start.sh"]
