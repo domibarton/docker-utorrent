@@ -6,7 +6,8 @@ The utserver will run under it's owner user (`utorrent:utorrent`) with user ID `
 
 ## Update utorrent
 
-The utorrent server will automatically be updated when you (re)start the conatiner.
+The utorrent server will automatically be loaded when you create the container.
+Therefor you can remove and simply re-create the container at any time to get the new utorrent version.
 
 ## Build
 
