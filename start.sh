@@ -10,4 +10,4 @@ then
 fi
 
 echo 'Starting utorrent server...'
-./utserver -settingspath /settings -logfile /settings/utserver.log
+exec ./utserver -settingspath /settings -logfile /settings/utserver.log
