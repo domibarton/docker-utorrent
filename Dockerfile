@@ -9,9 +9,7 @@ RUN apt-get -q update \
     && rm -rf /tmp/*
 
 RUN groupadd -r -g 666 utorrent \
-    && useradd -r -u 666 -g 666 utorrent \
-    && mkdir /utorrent \
-    && chown utorrent: /utorrent
+    && useradd -r -u 666 -g 666 -d /utorrent -m utorrent
 
 ADD start.sh /start.sh
 RUN chown utorrent: /start.sh \
