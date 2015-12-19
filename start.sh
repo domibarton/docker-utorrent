@@ -6,11 +6,9 @@ rm -rf * && wget -qO - http://download.ap.bittorrent.com/track/beta/endpoint/uts
 
 if [[ ! -e /settings/webui.zip ]]
 then
-    echo
     echo 'Symlinking webui.zip to /settings...'
     ln -s /utorrent/webui.zip /settings/webui.zip
 fi
 
-echo
 echo 'Starting utorrent server...'
 ./utserver -settingspath /settings -logfile /settings/utserver.log
