@@ -1,0 +1,84 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: utorrent
+
+---
+
+kind: StorageClass
+apiVersion: storage.k8s.io/v1
+metadata:
+  name: ut-settings-sc
+provisioner: kubernetes.io/NFS
+volumeBindingMode: WaitForFirstConsumer
+
+---
+
+kind: PersistentVolume
+apiVersion: v1
+metadata:
+  name: ut-settings-pv
+  labels:
+    type: local
+spec:
+  storageClassName: ut-settings-sc
+  capacity:
+    storage: 100Mi
+  accessModes:
+    - ReadWriteOnce
+  hostPath:
+    path: "/volume/utorrent/settings"
+
+---
+
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: ut-settings-pvc
+spec:
+  storageClassName: ut-settings-sc
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 100Mi
+
+---
+
+kind: StorageClass
+apiVersion: storage.k8s.io/v1
+metadata:
+  name: ut-media-sc
+provisioner: kubernetes.io/NFS
+volumeBindingMode: WaitForFirstConsumer
+
+---
+
+kind: PersistentVolume
+apiVersion: v1
+metadata:
+  name: ut-media-pv
+  labels:
+    type: local
+spec:
+  storageClassName: ut-media-sc
+  capacity:
+    storage: 350Gi
+  accessModes:
+    - ReadWriteOnce
+  hostPath:
+    path: "/volume/utorrent/media"
+
+---
+
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: ut-media-pvc
+spec:
+  storageClassName: ut-media-sc
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 350Gi
