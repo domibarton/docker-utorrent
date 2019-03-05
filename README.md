@@ -14,7 +14,7 @@ The docker image currently supports:
 To run the utorrent container you can execute:
 
 ```bash
-docker run --name sickbeard -v <datadir path>:/datadir -v <media path>:/media -p 8081:8081 dbarton/utorrent
+docker run --name sickbeard -v <datadir path>:/datadir -v <media path>:/media -p 8081:8081 yurilchuk/utorrent-kubernetes
 ```
 
 Open a browser and point your to [http://my-docker-host:8080/gui](http://my-docker-host:8080/gui)
