@@ -1,5 +1,5 @@
-FROM debian:8
-MAINTAINER Dominique Barton
+FROM ubuntu:18.04
+LABEL Maintainer="Yuri L Chuk"
 
 #
 # Create user and group for utorrent.
@@ -21,8 +21,8 @@ RUN chown utorrent: /utorrent.sh \
 #
 
 RUN apt-get -q update \
-    && apt-get install -qy curl libssl1.0.0 \
-    && curl -s http://download.ap.bittorrent.com/track/beta/endpoint/utserver/os/linux-x64-debian-7-0 | tar xzf - --strip-components 1 -C utorrent \
+    && apt-get install -qy curl libssl1.0.0 libssl-dev vim \
+    && curl -s http://download-new.utorrent.com/endpoint/utserver/os/linux-x64-ubuntu-13-04/track/beta/ | tar xzf - --strip-components 1 -C utorrent \
     && chown -R utorrent: utorrent \
     && apt-get -y remove curl \
     && apt-get -y autoremove \
@@ -34,7 +34,7 @@ RUN apt-get -q update \
 # Define container settings.
 #
 
-VOLUME ["/settings", "/media"]
+VOLUME ["/settings", "/media/done", "/media/downloading", "/media/torrents"]
 
 EXPOSE 8080 6881
 
