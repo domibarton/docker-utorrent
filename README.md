@@ -33,11 +33,13 @@ If you want to use the Docker Hub image within your existing Docker Compose file
 
 ```yaml
 utorrent:
-    image: "dbarton/utorrent"
+    image: "yurilchuk/utorrent-kubernetes"
     container_name: "utorrent"
     volumes:
         - "<settings path>:/settings"
-        - "<media path>:/media"
+        - "<media path>:/media/done"
+        - "<media path>:/media/downloading"
+        - "<media path>:/media/torrents"
     ports:
         - "8080:8080"
         - "6881:6881"
@@ -51,7 +53,9 @@ utorrent:
 Please mount the following volumes inside your utorrent container:
 
 * `/settings`: Holds all the utorrent settings file
-* `/media`: Directory for your downloaded media
+* `/media/done`: Directory for your downloaded media
+* `/media/downloading`: Directory for your downloading media
+* `/media/torrents`: Directory for your torrent files
 
 ### UID and GID
 
