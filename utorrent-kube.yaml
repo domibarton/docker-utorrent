@@ -116,10 +116,15 @@ metadata:
   name: utorrent
 spec:
   replicas: 1
+  selector:
+      matchLabels:
+      app: utorrent
   strategy:
     type: Recreate
   template:
     metadata:
+      labels:
+        app: utorrent
     spec:
       containers:
       - env:
