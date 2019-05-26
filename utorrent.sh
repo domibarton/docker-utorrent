@@ -31,3 +31,4 @@ fi
 
 echo 'Starting utorrent server...'
 exec su -pc "./utserver -settingspath /settings -logfile /settings/utserver.log" ${USER}
+echo '#################################### UTSERVER ####################################'

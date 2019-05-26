@@ -37,9 +37,9 @@ utorrent:
     container_name: "utorrent"
     volumes:
         - "<settings path>:/settings"
-        - "<media path>:/media/done"
-        - "<media path>:/media/downloading"
-        - "<media path>:/media/torrents"
+        - "<done path>:/media/done"
+        - "<downloading path>:/media/downloading"
+        - "<torrents path>:/media/torrents"
     ports:
         - "8080:8080"
         - "6881:6881"
