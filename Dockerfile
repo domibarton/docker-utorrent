@@ -17,6 +17,14 @@ RUN chown utorrent: /utorrent.sh \
     && chmod 755 /utorrent.sh
 
 #
+# Create settings folder.
+#
+
+RUN mkdir /settings \
+    && chown utorrent: /settings  \
+    && chmod 755 /settings
+
+#
 # Install utorrent and all required dependencies.
 #
 
@@ -34,7 +42,7 @@ RUN apt-get -q update \
 # Define container settings.
 #
 
-VOLUME ["/settings", "/media/done", "/media/downloading", "/media/torrents"]
+VOLUME ["/settings", "/utorrent/media/done", "/utorrent/media/downloading", "/utorrent/media/torrents"]
 
 EXPOSE 8080 6881
 
