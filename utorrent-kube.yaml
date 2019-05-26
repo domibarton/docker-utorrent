@@ -82,3 +82,67 @@ spec:
   resources:
     requests:
       storage: 350Gi
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+  name: utorrent
+spec:
+  ports:
+  - name: "8080"
+    port: 8080
+    targetPort: 8080
+  - name: "6881"
+    port: 6881
+    targetPort: 6881
+status:
+  loadBalancer: {}
+
+---
+
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  labels:
+  name: utorrent
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+    spec:
+      containers:
+      - env:
+        - name: HOST_GID
+          value: "1002"
+        - name: HOST_UID
+          value: "1002"
+        image: yurilchuk/utorrent-kubernetes:latest
+        name: utorrent
+        ports:
+        - containerPort: 8080
+        - containerPort: 6881
+        resources: {}
+        volumeMounts:
+        - mountPath: /utorrent/media
+          name: utorrent-data
+        - mountPath: /settings
+          name: utorrent-settings
+        #- mountPath: /settings/utserver.conf
+        #  name: utorrent-claim2
+      restartPolicy: Always
+      volumes:
+      - name: utorrent-data
+        persistentVolumeClaim:
+          claimName: ut-media-pv
+      - name: utorrent-settings
+        persistentVolumeClaim:
+          claimName: ut-settings-pv
+     # - name: utorrent-claim2
+     #   persistentVolumeClaim:
+     #     claimName: utorrent-claim2
+status: {}
