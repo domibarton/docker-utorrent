@@ -42,7 +42,7 @@ RUN apt-get -q update \
 # Define container settings.
 #
 
-VOLUME ["/settings", "/utorrent/media/done", "/utorrent/media/downloading", "/utorrent/media/torrents"]
+VOLUME ["/settings", "/utorrent/media/"]
 
 EXPOSE 8080 6881
 
