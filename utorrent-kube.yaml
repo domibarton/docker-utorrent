@@ -104,6 +104,8 @@ spec:
   - name: "6881"
     port: 6881
     targetPort: 6881
+  selector:
+    app: utorrent
 status:
   loadBalancer: {}
 
@@ -118,7 +120,7 @@ spec:
   replicas: 1
   selector:
       matchLabels:
-      app: utorrent
+        app: utorrent
   strategy:
     type: Recreate
   template:
