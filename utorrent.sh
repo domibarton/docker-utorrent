@@ -7,13 +7,14 @@
 USER="utorrent"
 
 echo "-> Initializing......"
+echo "==========================================================="
 echo "-> utorrent settings:"
 echo "==========================================================="
 echo
 echo "  User:       ${USER}"
 echo "  UID:        ${UTORRENT_UID:=666}"
 echo "  GID:        ${UTORRENT_GID:=666}"
-echo
+echo ""
 
 #
 # Symlinking webui.zip to settings path.
@@ -30,7 +31,7 @@ fi
 # Finally, start utorrent.
 #
 
-echo
+echo ""
 echo '-> Starting utorrent server......'
 exec su -pc "./utserver -settingspath /settings -configfile /settings/utserver.conf -logfile /settings/utserver.log" ${USER}
 echo '#################################### UTSERVER ####################################'
