@@ -38,10 +38,10 @@ RUN apt-get -q update \
 ADD utserver.conf /utorrent/settings/utserver.conf
 
 #
-# Define container settings.
+# Define container Volume.
 #
 
-VOLUME ["/utorrent/settings", "/utorrent/media/"]
+VOLUME ["/utorrent/settings/", "/utorrent/media/"]
 
 EXPOSE 8080 6881
 
