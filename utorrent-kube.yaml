@@ -151,10 +151,10 @@ spec:
       volumes:
       - name: utorrent-data
         persistentVolumeClaim:
-          claimName: ut-media-pv
+          claimName: ut-media-pvc
       - name: utorrent-settings
         persistentVolumeClaim:
-          claimName: ut-settings-pv
+          claimName: ut-settings-pvc
      # - name: utorrent-claim2
      #   persistentVolumeClaim:
      #     claimName: utorrent-claim2
