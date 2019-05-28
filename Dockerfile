@@ -16,21 +16,6 @@ ADD utorrent.sh /utorrent.sh
 RUN chown utorrent: /utorrent.sh \
     && chmod 755 /utorrent.sh
 
-#
-# Create settings folder.
-#
-
-RUN mkdir /settings \
-    && chown utorrent: /settings  \
-    && chmod 755 /settings
-
-#
-# Add config file.
-#
-
-ADD utserver.conf /settings/utserver.conf
-RUN chown utorrent: /settings/utserver.conf \
-    && chmod 755 /settings/utserver.conf
 
 #
 # Install utorrent and all required dependencies.
@@ -47,10 +32,16 @@ RUN apt-get -q update \
     && rm -rf /tmp/*
 
 #
+# Add config file.
+#
+
+ADD utserver.conf /utorrent/settings/utserver.conf
+
+#
 # Define container settings.
 #
 
-VOLUME ["/settings", "/utorrent/media/"]
+VOLUME ["/utorrent/settings", "/utorrent/media/"]
 
 EXPOSE 8080 6881
 

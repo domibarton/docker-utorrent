@@ -23,7 +23,7 @@ echo ""
 if [[ ! -e /settings/webui.zip ]]
 then
     printf 'MSG: Symlinking webui.zip to /settings...'
-    ln -s /utorrent/webui.zip /settings/webui.zip
+    ln -s /utorrent/webui.zip /utorrent/settings/webui.zip
     echo "MSG: [DONE]"
 fi
 
@@ -33,5 +33,5 @@ fi
 
 echo ""
 echo '-> Starting utorrent server......'
-exec su -pc "./utserver -settingspath /settings -configfile /settings/utserver.conf -logfile /settings/utserver.log" ${USER}
+exec su -pc "./utserver -settingspath /utorrent/settings -configfile /utorrent/settings/utserver.conf -logfile /utorrent/settings/utserver.log" ${USER}
 echo '#################################### UTSERVER ####################################'
