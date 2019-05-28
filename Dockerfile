@@ -29,6 +29,8 @@ RUN mkdir /settings \
 #
 
 ADD utserver.conf /settings/utserver.conf
+RUN chown utorrent: /settings/utserver.conf \
+    && chmod 755 /settings/utserver.conf
 
 #
 # Install utorrent and all required dependencies.
