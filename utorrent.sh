@@ -20,7 +20,7 @@ echo ""
 # Symlinking webui.zip to settings path.
 #
 
-if [[ ! -e /settings/webui.zip ]]
+if [[ ! -e /utorrent/settings/webui.zip ]]
 then
     printf 'MSG: Symlinking webui.zip to /settings...'
     ln -s /utorrent/webui.zip /utorrent/settings/webui.zip
