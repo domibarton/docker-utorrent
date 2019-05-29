@@ -20,16 +20,17 @@ apiVersion: v1
 metadata:
   name: ut-settings-pv
   namespace: utorrent
-  labels:
-    type: local
 spec:
   storageClassName: ut-settings-sc
   capacity:
     storage: 100Mi
   accessModes:
     - ReadWriteMany
-  hostPath:
+  persistentVolumeReclaimPolicy: Retain
+  nfs:
     path: "/volume/utorrent/settings"
+    server: 192.168.0.7
+    readonly: false
 
 ---
 
@@ -63,16 +64,17 @@ apiVersion: v1
 metadata:
   name: ut-media-pv
   namespace: utorrent
-  labels:
-    type: local
 spec:
   storageClassName: ut-media-sc
   capacity:
     storage: 350Gi
   accessModes:
     - ReadWriteMany
-  hostPath:
+  persistentVolumeReclaimPolicy: Retain
+  nfs:
     path: "/volume/utorrent/media"
+    server: 192.168.0.7
+    readonly: false
 
 ---
 
@@ -148,6 +150,9 @@ spec:
         #- mountPath: /settings/utserver.conf
         #  name: utorrent-claim2
       restartPolicy: Always
+      securityContext:
+        supplementalGroups: [100003]
+        privileged: false
       volumes:
       - name: utorrent-data
         persistentVolumeClaim:
