@@ -27,7 +27,7 @@ spec:
   capacity:
     storage: 100Mi
   accessModes:
-    - ReadWriteOnce
+    - ReadWriteMany
   hostPath:
     path: "/volume/utorrent/settings"
 
@@ -41,7 +41,7 @@ metadata:
 spec:
   storageClassName: ut-settings-sc
   accessModes:
-    - ReadWriteOnce
+    - ReadWriteMany
   resources:
     requests:
       storage: 100Mi
@@ -70,7 +70,7 @@ spec:
   capacity:
     storage: 350Gi
   accessModes:
-    - ReadWriteOnce
+    - ReadWriteMany
   hostPath:
     path: "/volume/utorrent/media"
 
@@ -84,7 +84,7 @@ metadata:
 spec:
   storageClassName: ut-media-sc
   accessModes:
-    - ReadWriteOnce
+    - ReadWriteMany
   resources:
     requests:
       storage: 350Gi
@@ -152,9 +152,13 @@ spec:
       - name: utorrent-data
         persistentVolumeClaim:
           claimName: ut-media-pvc
+        hostPath:
+          path: /volume/utorrent/media
       - name: utorrent-settings
         persistentVolumeClaim:
           claimName: ut-settings-pvc
+        hostPath:
+          path: /volume/utorrent/settings
      # - name: utorrent-claim2
      #   persistentVolumeClaim:
      #     claimName: utorrent-claim2
