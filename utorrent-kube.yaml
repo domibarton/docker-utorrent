@@ -150,7 +150,6 @@ spec:
       restartPolicy: Always
       securityContext:
         supplementalGroups: [100003]
-        privileged: false
       volumes:
       - name: utorrent-data
         persistentVolumeClaim:
