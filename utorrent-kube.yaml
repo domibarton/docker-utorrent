@@ -152,13 +152,9 @@ spec:
       - name: utorrent-data
         persistentVolumeClaim:
           claimName: ut-media-pvc
-        hostPath:
-          path: /volume/utorrent/media
       - name: utorrent-settings
         persistentVolumeClaim:
           claimName: ut-settings-pvc
-        hostPath:
-          path: /volume/utorrent/settings
      # - name: utorrent-claim2
      #   persistentVolumeClaim:
      #     claimName: utorrent-claim2
