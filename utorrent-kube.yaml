@@ -30,7 +30,7 @@ spec:
   nfs:
     path: "/volume/utorrent/settings"
     server: 192.168.0.7
-    readonly: false
+    readOnly: false
 
 ---
 
@@ -74,7 +74,7 @@ spec:
   nfs:
     path: "/volume/utorrent/media"
     server: 192.168.0.7
-    readonly: false
+    readOnly: false
 
 ---
 
