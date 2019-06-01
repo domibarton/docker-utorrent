@@ -155,7 +155,4 @@ spec:
       - name: utorrent-settings
         persistentVolumeClaim:
           claimName: ut-settings-pvc
-     # - name: utorrent-claim2
-     #   persistentVolumeClaim:
-     #     claimName: utorrent-claim2
 status: {}
