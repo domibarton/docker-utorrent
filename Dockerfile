@@ -32,18 +32,18 @@ RUN apt-get -q update \
     && rm -rf /tmp/*
 
 #
-# Add config file.
-#
-
-ADD utserver.conf /utorrent/settings/utserver.conf
-
-#
 # Define container Volume.
 #
 
 VOLUME ["/utorrent/settings/", "/utorrent/media/"]
 
 EXPOSE 8080 6881
+
+#
+# Add config file.
+#
+
+ADD utserver.conf /utorrent/settings/utserver.conf
 
 #
 # Start utorrent.
