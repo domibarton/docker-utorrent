@@ -29,7 +29,17 @@ RUN apt-get -q update \
     && apt-get -y autoremove \
     && apt-get -y clean \
     && rm -rf /var/lib/apt/lists/* \
-    && rm -rf /tmp/*
+    && rm -rf /tmp/* \
+    && mkdir /utorrent/settings \
+    && mkdir /utorrent/media
+
+#
+# Add config file.
+#
+
+ADD utserver.conf /utorrent/settings/utserver.conf
+RUN chown utorrent:/utorrent/settings/utserver.conf \
+    && chmod 755 /utorrent/settings/utserver.conf
 
 #
 # Define container Volume.
@@ -38,12 +48,6 @@ RUN apt-get -q update \
 VOLUME ["/utorrent/settings/", "/utorrent/media/"]
 
 EXPOSE 8080 6881
-
-#
-# Add config file.
-#
-
-ADD utserver.conf /utorrent/settings/utserver.conf
 
 #
 # Start utorrent.
