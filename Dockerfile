@@ -29,17 +29,15 @@ RUN apt-get -q update \
     && apt-get -y autoremove \
     && apt-get -y clean \
     && rm -rf /var/lib/apt/lists/* \
-    && rm -rf /tmp/* \
-    && mkdir /utorrent/settings \
-    && mkdir /utorrent/media
+    && rm -rf /tmp/*
 
 #
 # Add config file.
 #
 
-ADD utserver.conf /utorrent/settings/utserver.conf
-RUN chown utorrent:/utorrent/settings/utserver.conf \
-    && chmod 755 /utorrent/settings/utserver.conf
+ADD utserver.conf /utorrent/utserver.conf
+RUN chown utorrent: /utorrent/utserver.conf \
+    && chmod 755 /utorrent/utserver.conf
 
 #
 # Define container Volume.
