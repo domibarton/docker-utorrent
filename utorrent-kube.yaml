@@ -107,7 +107,6 @@ spec:
       restartPolicy: Always
       securityContext:
         supplementalGroups: [65534]
-        runAsUser: 65534
       volumes:
       - name: utorrent
         persistentVolumeClaim:
