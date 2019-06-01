@@ -8,7 +8,7 @@ metadata:
 kind: StorageClass
 apiVersion: storage.k8s.io/v1
 metadata:
-  name: ut-settings-sc
+  name: ut-sc
   namespace: utorrent
 provisioner: kubernetes.io/NFS
 volumeBindingMode: WaitForFirstConsumer
@@ -18,60 +18,17 @@ volumeBindingMode: WaitForFirstConsumer
 kind: PersistentVolume
 apiVersion: v1
 metadata:
-  name: ut-settings-pv
+  name: ut-pv
   namespace: utorrent
 spec:
-  storageClassName: ut-settings-sc
-  capacity:
-    storage: 100Mi
-  accessModes:
-    - ReadWriteMany
-  persistentVolumeReclaimPolicy: Retain
-  nfs:
-    path: "/volume/utorrent/settings"
-    server: 192.168.0.7
-
----
-
-kind: PersistentVolumeClaim
-apiVersion: v1
-metadata:
-  name: ut-settings-pvc
-  namespace: utorrent
-spec:
-  storageClassName: ut-settings-sc
-  accessModes:
-    - ReadWriteMany
-  resources:
-    requests:
-      storage: 100Mi
-
----
-
-kind: StorageClass
-apiVersion: storage.k8s.io/v1
-metadata:
-  name: ut-media-sc
-  namespace: utorrent
-provisioner: kubernetes.io/NFS
-volumeBindingMode: WaitForFirstConsumer
-
----
-
-kind: PersistentVolume
-apiVersion: v1
-metadata:
-  name: ut-media-pv
-  namespace: utorrent
-spec:
-  storageClassName: ut-media-sc
+  storageClassName: ut-sc
   capacity:
     storage: 350Gi
   accessModes:
     - ReadWriteMany
   persistentVolumeReclaimPolicy: Retain
   nfs:
-    path: "/volume/utorrent/media"
+    path: "/volume/utorrent"
     server: 192.168.0.7
 
 ---
@@ -79,10 +36,10 @@ spec:
 kind: PersistentVolumeClaim
 apiVersion: v1
 metadata:
-  name: ut-media-pvc
+  name: ut-pvc
   namespace: utorrent
 spec:
-  storageClassName: ut-media-sc
+  storageClassName: ut-sc
   accessModes:
     - ReadWriteMany
   resources:
@@ -142,21 +99,18 @@ spec:
         resources: {}
         volumeMounts:
         - mountPath: /utorrent/media
-          name: utorrent-data
+          name: utorrent
         - mountPath: /utorrent/settings
-          name: utorrent-settings
+          name: utorrent
         #- mountPath: /settings/utserver.conf
         #  name: utorrent-claim2
       restartPolicy: Always
       securityContext:
         supplementalGroups: [65534]
       volumes:
-      - name: utorrent-data
+      - name: utorrent
         persistentVolumeClaim:
-          claimName: ut-media-pvc
-      - name: utorrent-settings
-        persistentVolumeClaim:
-          claimName: ut-settings-pvc
+          claimName: ut-pvc
      # - name: utorrent-claim2
      #   persistentVolumeClaim:
      #     claimName: utorrent-claim2
