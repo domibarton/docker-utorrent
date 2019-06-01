@@ -27,11 +27,18 @@ then
     echo "MSG: [DONE]"
 fi
 
+if [[ ! -e /utorrent/settings/utserver.conf ]]
+then
+    echo 'MSG: Symlinking utserver.conf to /settings...'
+    ln -s /utorrent/utserver.conf /utorrent/settings/utserver.conf
+    echo "MSG: [DONE]"
+fi
+
 #
 # Finally, start utorrent.
 #
 
 echo " "
 echo '-> Starting utorrent server......'
-exec su -pc "./utserver -settingspath /utorrent/settings -configfile /utorrent/settings/utserver.conf -logfile /utorrent/settings/utserver.log" ${USER}
+exec su -pc "./utserver -settingspath /utorrent/settings -configfile /utorrent/utserver.conf -logfile /utorrent/settings/utserver.log" ${USER}
 echo '#################################### UTSERVER ####################################'
