@@ -40,5 +40,5 @@ fi
 
 echo " "
 echo '-> Starting utorrent server......'
-exec su -pc "./utserver -settingspath /utorrent/settings -configfile /utorrent/utserver.conf -logfile /utorrent/settings/utserver.log" ${USER}
+exec su -pc "./utserver -configfile /utorrent/utserver.conf -logfile /utorrent/utserver.log" ${USER}
 echo '#################################### UTSERVER ####################################'
