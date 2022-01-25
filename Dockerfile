@@ -1,8 +1,6 @@
 FROM ubuntu:18.04
 LABEL Maintainer="Yuri L Chuk"
 
-WORKDIR /utorrent
-
 #
 # Create user and group for utorrent.
 #
@@ -35,6 +33,8 @@ RUN apt-get -q update \
 ADD utserver.conf /utorrent/utserver.conf
 RUN chown utorrent: /utorrent/utserver.conf \
     && chmod 755 /utorrent/utserver.conf
+
+WORKDIR /utorrent
 
 #
 # Start utorrent.
