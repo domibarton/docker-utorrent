@@ -97,7 +97,7 @@ spec:
         - containerPort: 6881
         resources: {}
         volumeMounts:
-        - mountPath: /shared/utorrent
+        - mountPath: /utorrent
           name: utorrent-data
       restartPolicy: Always
       securityContext:
