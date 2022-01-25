@@ -20,17 +20,17 @@ echo " "
 # Symlinking webui.zip to settings path.
 #
 
-if [[ ! -e /utorrent/webui.zip ]]
+if [[ ! -e /utorrent/shared/webui.zip ]]
 then
-    echo 'MSG: Symlinking webui.zip to /settings...'
-    ln -s /utorrent/webui.zip /utorrent/webui.zip
+    echo 'MSG: Symlinking webui.zip to /shared...'
+    ln -s /utorrent/webui.zip /utorrent/shared/webui.zip
     echo "MSG: [DONE]"
 fi
 
-if [[ ! -e /utorrent/utserver.conf ]]
+if [[ ! -e /utorrent/shared/utserver.conf ]]
 then
-    echo 'MSG: Symlinking utserver.conf to /settings...'
-    ln -s /utorrent/utserver.conf /utorrent/utserver.conf
+    echo 'MSG: Symlinking utserver.conf to /shared...'
+    ln -s /utorrent/utserver.conf /utorrent/shared/utserver.conf
     echo "MSG: [DONE]"
 fi
 
@@ -40,5 +40,5 @@ fi
 
 echo " "
 echo '-> Starting utorrent server......'
-exec su -pc "./utserver -configfile /utorrent/utserver.conf -logfile /utorrent/utserver.log" ${USER}
+exec su -pc "./utserver -configfile /utorrent/shared/utserver.conf -logfile /utorrent/shared/utserver.log" ${USER}
 echo '#################################### UTSERVER ####################################'

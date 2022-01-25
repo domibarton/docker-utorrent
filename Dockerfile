@@ -17,14 +17,21 @@ RUN chown utorrent: /utorrent.sh \
     && chmod 755 /utorrent.sh
 
 
+RUN mkdir -p /utorrent \
+    && mkdir -p /utorrent/shared/download \
+    && mkdir -p /utorrent/shared/done \
+    && mkdir -p /utorrent/torrent \
+    && chown -R utorrent: /utorrent \
+    && chmod 755 /utorrent
+
 #
 # Install utorrent and all required dependencies.
 #
 
 RUN apt-get -q update \
     && apt-get install -qy curl libssl1.0.0 libssl-dev vim nfs-common \
-    && curl -s http://download-new.utorrent.com/endpoint/utserver/os/linux-x64-ubuntu-13-04/track/beta/ | tar xzf - --strip-components 1 -C utorrent \
-    && chown -R utorrent: utorrent \
+    && curl -s http://download-new.utorrent.com/endpoint/utserver/os/linux-x64-ubuntu-13-04/track/beta/ | tar xzf - --strip-components 1 -C /utorrent \
+    && chown -R utorrent: /utorrent \
     && apt-get -y remove curl \
     && apt-get -y autoremove \
     && apt-get -y clean \
@@ -35,15 +42,15 @@ RUN apt-get -q update \
 # Add config file.
 #
 
-ADD utserver.conf /utorrent/utserver.conf
-RUN chown utorrent: /utorrent/utserver.conf \
-    && chmod 755 /utorrent/utserver.conf
+ADD utserver.conf /utorrent/shared/utserver.conf
+RUN chown utorrent: /utorrent/shared/utserver.conf \
+    && chmod 755 /utorrent/shared/utserver.conf
 
 #
 # Define container Volume.
 #
 
-VOLUME ["/utorrent"]
+VOLUME ["/utorrent/shared"]
 
 EXPOSE 8080 6881
 
