@@ -1,6 +1,15 @@
 FROM ubuntu:18.04
 LABEL Maintainer="Yuri L Chuk"
 
+WORKDIR /utorrent
+
+#
+# Define container Volume.
+#
+VOLUME utorrent/shared
+
+EXPOSE 8080 6881
+
 #
 # Create user and group for utorrent.
 #
@@ -17,8 +26,7 @@ RUN chown utorrent: /utorrent.sh \
     && chmod 755 /utorrent.sh
 
 
-RUN mkdir -p /utorrent \
-    && mkdir -p /utorrent/shared/download \
+RUN mkdir -p /utorrent/shared/download \
     && mkdir -p /utorrent/shared/done \
     && mkdir -p /utorrent/torrent \
     && chown -R utorrent: /utorrent \
@@ -47,17 +55,7 @@ RUN chown utorrent: /utorrent/shared/utserver.conf \
     && chmod 755 /utorrent/shared/utserver.conf
 
 #
-# Define container Volume.
-#
-
-VOLUME ["/utorrent/shared"]
-
-EXPOSE 8080 6881
-
-#
 # Start utorrent.
 #
-
-WORKDIR /utorrent
 
 CMD ["/utorrent.sh"]
