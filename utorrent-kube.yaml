@@ -28,7 +28,7 @@ spec:
     - ReadWriteMany
   persistentVolumeReclaimPolicy: Retain
   hostPath:
-    path: "/shared/utorrent"
+    path: "/storage/hd0/utorrent"
 
 ---
 
