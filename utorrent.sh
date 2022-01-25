@@ -17,9 +17,8 @@ echo "  GID:        ${UTORRENT_GID:=666}"
 echo " "
 
 #
-# Symlinking webui.zip to settings path.
+# Symlinking webui.zip to shared path.
 #
-
 if [[ ! -e /utorrent/shared/webui.zip ]]
 then
     echo 'MSG: Symlinking webui.zip to /shared...'
@@ -27,6 +26,9 @@ then
     echo "MSG: [DONE]"
 fi
 
+#
+# Symlinking tserver.conf to shared path.
+#
 if [[ ! -e /utorrent/shared/utserver.conf ]]
 then
     echo 'MSG: Symlinking utserver.conf to /shared...'
@@ -35,9 +37,36 @@ then
 fi
 
 #
+# Create download folder.
+#
+if [ ! -d /utorrent/shared/download ]; 
+then
+  echo 'Create download folder...'
+  mkdir -p /utorrent/shared/download;
+fi
+
+#
+# Create done folder.
+#
+if [ ! -d /utorrent/shared/done ]; 
+then
+  echo 'Create done folder...'
+  mkdir -p /utorrent/shared/done;
+fi
+
+#
+# Create torrent folder.
+#
+if [ ! -d /utorrent/torrent ]; 
+then
+  echo 'Create torrent folder...'
+  mkdir -p /utorrent/shared/torrent;
+fi
+
+
+#
 # Finally, start utorrent.
 #
-
 echo " "
 echo '-> Starting utorrent server......'
 exec su -pc "./utserver -configfile /utorrent/shared/utserver.conf -logfile /utorrent/shared/utserver.log" ${USER}
