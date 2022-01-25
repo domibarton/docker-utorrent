@@ -28,7 +28,7 @@ spec:
     - ReadWriteMany
   persistentVolumeReclaimPolicy: Retain
   hostPath:
-    path: "/shared"
+  path: "/shared"
 
 ---
 
@@ -67,7 +67,7 @@ status:
 
 ---
 
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   namespace: utorrent
@@ -97,7 +97,7 @@ spec:
         - containerPort: 6881
         resources: {}
         volumeMounts:
-        - mountPath: /shared/
+        - mountPath: /shared/utorrent
           name: utorrent-data
       restartPolicy: Always
       securityContext:
