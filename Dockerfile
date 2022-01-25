@@ -43,7 +43,7 @@ RUN chown utorrent: /utorrent/utserver.conf \
 # Define container Volume.
 #
 
-VOLUME ["/utorrent/settings/", "/utorrent/media/"]
+VOLUME ["/utorrent"]
 
 EXPOSE 8080 6881
 

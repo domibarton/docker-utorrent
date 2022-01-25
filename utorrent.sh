@@ -20,17 +20,17 @@ echo " "
 # Symlinking webui.zip to settings path.
 #
 
-if [[ ! -e /utorrent/settings/webui.zip ]]
+if [[ ! -e /utorrent/webui.zip ]]
 then
     echo 'MSG: Symlinking webui.zip to /settings...'
-    ln -s /utorrent/webui.zip /utorrent/settings/webui.zip
+    ln -s /utorrent/webui.zip /utorrent/webui.zip
     echo "MSG: [DONE]"
 fi
 
-if [[ ! -e /utorrent/settings/utserver.conf ]]
+if [[ ! -e /utorrent/utserver.conf ]]
 then
     echo 'MSG: Symlinking utserver.conf to /settings...'
-    ln -s /utorrent/utserver.conf /utorrent/settings/utserver.conf
+    ln -s /utorrent/utserver.conf /utorrent/utserver.conf
     echo "MSG: [DONE]"
 fi
 
