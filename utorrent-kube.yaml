@@ -10,7 +10,7 @@ apiVersion: storage.k8s.io/v1
 metadata:
   name: ut-sc
   namespace: utorrent
-provisioner: kubernetes.io/NFS
+provisioner: kubernetes.io/no-provisioner
 volumeBindingMode: WaitForFirstConsumer
 
 ---
@@ -28,7 +28,7 @@ spec:
     - ReadWriteMany
   persistentVolumeReclaimPolicy: Retain
   hostPath:
-  path: "/shared"
+    path: "/shared"
 
 ---
 
