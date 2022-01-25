@@ -22,7 +22,7 @@ RUN chown utorrent: /utorrent.sh \
 #
 
 RUN apt-get -q update \
-    && apt-get install -qy curl libssl1.0 libssl-dev vim nfs-common \
+    && apt-get install -qy curl libssl1.0.0 libssl-dev vim nfs-common \
     && curl -s http://download-new.utorrent.com/endpoint/utserver/os/linux-x64-ubuntu-13-04/track/beta/ | tar xzf - --strip-components 1 -C utorrent \
     && chown -R utorrent: utorrent \
     && apt-get -y remove curl \
