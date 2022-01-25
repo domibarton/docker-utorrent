@@ -4,13 +4,6 @@ LABEL Maintainer="Yuri L Chuk"
 WORKDIR /utorrent
 
 #
-# Define container Volume.
-#
-VOLUME utorrent/shared
-
-EXPOSE 8080 6881
-
-#
 # Create user and group for utorrent.
 #
 
