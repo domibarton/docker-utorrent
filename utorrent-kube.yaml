@@ -54,12 +54,10 @@ metadata:
   name: utorrent
 spec:
   ports:
-  - name: "8080"
-    port: 8080
-    targetPort: 8080
-  - name: "6881"
-    port: 6881
-    targetPort: 6881
+   - port: 8080
+     targetPort: 8080
+   - port: 6881
+     targetPort: 6881
   selector:
     app: utorrent
   type: LoadBalancer
