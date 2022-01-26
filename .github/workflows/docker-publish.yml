@@ -23,7 +23,7 @@ jobs:
        # Name of the image
        imageName: ${{ secrets.DOCKER_HUB_ID }}/utorrent-kubernetes
        # Name of the Dockerfile
-       dockerFile: Dockerfile # optional, default is Dockerfile
+       dockerFile: ./Dockerfile # optional, default is Dockerfile
        # Docker `--build-arg` flags (*comma separated*)
        buildArg: none # optional, default is none
        # Indicate if the builded image should be published on Docker HUB
