@@ -1,9 +1,5 @@
-<p align="center">
-    <h2 align="center">GitHub Readme Stats</h2>
-</p>
-
   ![PR](https://github.com/github/docs/actions/workflows/main.yml/badge.svg?event=pull)
-  ![CI Status](https://github.com/github/docs/actions/workflows/main.yml/badge.svg)
+  ![Docker CI Actions Status](https://github.com/github/yurilchuk/utorrent-kubernetes/workflows/docker-publish.yml/badge.svg)
   [![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/yurilchuk/utorrent-kubernetes/issues)
 
 ## About
