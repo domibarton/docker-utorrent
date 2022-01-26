@@ -2,9 +2,7 @@
     <h2 align="center">GitHub Readme Stats</h2>
 </p>
   <p align="center">
-    <a href="https://github.com/yurilchuk/utorrent-kubernetes/actions">
-      <img alt="Docker Build" src="https://github.com/yurilchuk/utorrent-kubernetes/workflows/docker-publish.yml/badge.svg" />
-    </a>
+      ## Contributing [![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/dwyl/esta/issues)
     <a href="https://github.com/yurilchuk/utorrent-kubernetes/issues">
       <img alt="Issues" src="https://img.shields.io/github/issues/yurilchuk/utorrent-kubernetes/?color=0088ff" />
     </a>
@@ -14,6 +12,8 @@
     <br />
     <br />
   </p>
+
+  ![example workflow](https://github.com/github/docs/actions/workflows/main.yml/badge.svg)
 
 ## About
 
