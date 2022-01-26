@@ -3,13 +3,13 @@
 </p>
   <p align="center">
     <a href="https://github.com/yurilchuk/utorrent-kubernetes/actions">
-      <img alt="Tests Passing" src="https://github.com/anuraghazra/github-readme-stats/workflows/Test/badge.svg" />
+      <img alt="Tests Passing" src="https://github.com/yurilchuk/utorrent-kubernetes/workflows/Test/badge.svg" />
     </a>
     <a href="https://github.com/yurilchuk/utorrent-kubernetes/issues">
-      <img alt="Issues" src="https://img.shields.io/github/issues/anuraghazra/github-readme-stats?color=0088ff" />
+      <img alt="Issues" src="https://img.shields.io/github/issues/yurilchuk/utorrent-kubernetes/?color=0088ff" />
     </a>
     <a href="https://github.com/yurilchuk/utorrent-kubernetes/pulls">
-      <img alt="GitHub pull requests" src="https://img.shields.io/github/issues-pr/anuraghazra/github-readme-stats?color=0088ff" />
+      <img alt="GitHub pull requests" src="https://img.shields.io/github/issues-pr/yurilchuk/utorrent-kubernetes/?color=0088ff" />
     </a>
     <br />
     <br />
