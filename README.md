@@ -3,7 +3,7 @@
 </p>
   <p align="center">
     <a href="https://github.com/yurilchuk/utorrent-kubernetes/actions">
-      <img alt="Tests Passing" src="https://github.com/yurilchuk/utorrent-kubernetes/workflows/Test/badge.svg" />
+      <img alt="Docker Build" src="https://github.com/yurilchuk/utorrent-kubernetes/workflows/docker-publish.yml/badge.svg" />
     </a>
     <a href="https://github.com/yurilchuk/utorrent-kubernetes/issues">
       <img alt="Issues" src="https://img.shields.io/github/issues/yurilchuk/utorrent-kubernetes/?color=0088ff" />
