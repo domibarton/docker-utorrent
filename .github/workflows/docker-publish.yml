@@ -12,8 +12,7 @@ jobs:
 
     runs-on: ubuntu-latest
 
-    steps:
-    - uses: actions/checkout@v2      
+    steps:     
     - name: Customizable Docker Buildx Build
       # You may pin to the exact commit or the version.
       # uses: zmingxie/docker_buildx@6bb5966271e5b1f99b5739024cc84567e5a89d18
@@ -22,7 +21,7 @@ jobs:
        # Tags (comma separated) to apply to the image
        tag: latest # optional, default is latest
        # Name of the image
-       imageName: ${{ secrets.DOCKER_HUB_ID }}/utorrent-kubernetes
+       imageName: utorrent-kubernetes
        # Name of the Dockerfile
        dockerFile: dockerfile # optional, default is Dockerfile
        # Docker `--build-arg` flags (*comma separated*)
