@@ -1,5 +1,5 @@
   [![pages-build-deployment](https://github.com/yurilchuk/utorrent-kubernetes/actions/workflows/pages/pages-build-deployment/badge.svg)](https://github.com/yurilchuk/utorrent-kubernetes/actions/workflows/pages/pages-build-deployment)
-  [![Docker CI](https://github.com/yurilchuk/utorrent-kubernetes/actions/workflows/docker-publish.yml/badge.svg)](https://github.com/yurilchuk/utorrent-kubernetes/actions/workflows/docker-publish.yml)
+  [![Docker-CI](https://github.com/yurilchuk/utorrent-kubernetes/actions/workflows/docker-publish.yml/badge.svg)](https://github.com/yurilchuk/utorrent-kubernetes/actions/workflows/docker-publish.yml)
   [![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/yurilchuk/utorrent-kubernetes/issues)
   [![HitCount](http://hits.dwyl.com/yurilchuk/utorrent-kubernetes.svg?style=flat-square)](http://hits.dwyl.com/yurilchuk/utorrent-kubernetes)
 
