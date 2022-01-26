@@ -62,6 +62,7 @@ spec:
     targetPort: 6881
   selector:
     app: utorrent
+  type: LoadBalancer
 status:
   loadBalancer: {}
 
