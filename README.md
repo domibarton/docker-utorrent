@@ -1,68 +1,25 @@
 ## About
 
-Docker image to run the [utorrent server](http://www.utorrent.com/) in a containerized environment.
+Docker image to run the [utorrent server](http://www.utorrent.com/) in a Kubernetes environment.
 
-The docker image currently supports:
+### Run
 
-* running utorrent under its __own user__ (not `root`)
-* changing of the __UID and GID__ for the utorrent user
+To run the utorrent k8s container you can execute:
 
-## Run
-
-### Run via Docker CLI client
-
-To run the utorrent container you can execute:
-
-```bash
-docker run --name sickbeard -v <datadir path>:/datadir -v <media path>:/media -p 8081:8081 yurilchuk/utorrent-kubernetes
+```
+sudo kubectl apply -n utorrent -f https://raw.githubusercontent.com/yurilchuk/utorrent-kubernetes/master/utorrent-kube.yaml
 ```
 
-Open a browser and point your to [http://my-docker-host:8080/gui](http://my-docker-host:8080/gui)
+If do you want to create your own k8s yaml file, just use the docker image:
 
-## Run via Docker Compose
-
-You can also run the utorrent container by using [Docker Compose](https://www.docker.com/docker-compose).
-
-If you've cloned the [git repository](https://github.com/domibarton/docker-utorrent) you can build and run the Docker container locally (without the Docker Hub):
-
-```bash
-docker-compose up -d
 ```
-
-If you want to use the Docker Hub image within your existing Docker Compose file you can use the following YAML snippet:
-
-```yaml
-utorrent:
-    image: "yurilchuk/utorrent-kubernetes"
-    container_name: "utorrent"
-    volumes:
-        - "<settings path>:/settings"
-        - "<done path>:/media/done"
-        - "<downloading path>:/media/downloading"
-        - "<torrents path>:/media/torrents"
-    ports:
-        - "8080:8080"
-        - "6881:6881"
-    restart: always
+image: yurilchuk/utorrent-kubernetes:latest
 ```
-
-## Configuration
 
 ### Volumes
 
-Please mount the following volumes inside your utorrent container:
+You need to create a local Path: `/storage/hd0/utorrent` 
 
-* `/settings`: Holds all the utorrent settings file
-* `/media/done`: Directory for your downloaded media
-* `/media/downloading`: Directory for your downloading media
-* `/media/torrents`: Directory for your torrent files
+Pod Volume:
 
-### UID and GID
-
-By default utorrent runs with user ID and group ID `666`.
-If you want to run utorrent with different ID's you've to set the `UTORRENT_UID` and/or `UTORRENT_GID` environment variables, for example:
-
-```
-UTORRENT_UID=1234
-UTORRENT_GID=1234
-```
+* `/utorrent/shared/`: Directory for your files
