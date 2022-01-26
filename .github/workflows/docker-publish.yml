@@ -22,9 +22,9 @@ jobs:
        # Tags (comma separated) to apply to the image
        tag: latest # optional, default is latest
        # Name of the image
-       imageName: yurilchuk/utorrent-kubernetes
+       imageName: ${{ secrets.DOCKER_HUB_ID }}/utorrent-kubernetes
        # Name of the Dockerfile
-       dockerFile: . # optional, default is Dockerfile
+       dockerFile: dockerfile # optional, default is Dockerfile
        # Docker `--build-arg` flags (*comma separated*)
        buildArg: none # optional, default is none
        # Indicate if the builded image should be published on Docker HUB
