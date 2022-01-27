@@ -139,6 +139,11 @@ metadata:
   name: ut-ingress
   namespace: utorrent
 spec:
+  defaultBackend:
+    service:
+      name: ut-service
+      port:
+        number: 8080
   ingressClassName: ut-ingressclass
   tls:
   - hosts:
@@ -150,7 +155,7 @@ spec:
       paths:
       - path: /gui
         pathType: Prefix
-        defaultBackend:
+        backend:
           service:
             name: ut-service
             port:
