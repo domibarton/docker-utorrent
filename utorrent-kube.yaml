@@ -60,6 +60,8 @@ spec:
    - name: tcp
      port: 6881
      targetPort: 6881
+  externalIPs: 
+    - 10.1.2.1
   selector:
     app: utorrent
   type: LoadBalancer
@@ -153,7 +155,7 @@ spec:
   - host: utorrent.nb41.tech
     http:
       paths:
-      - path: /gui
+      - path: /
         pathType: Prefix
         backend:
           service:
