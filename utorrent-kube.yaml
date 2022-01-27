@@ -150,7 +150,7 @@ spec:
       paths:
       - path: /gui
         pathType: Prefix
-        backend:
+        defaultBackend:
           service:
             name: ut-service
             port:
