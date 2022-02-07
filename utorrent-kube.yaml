@@ -60,11 +60,9 @@ spec:
    - name: tcp
      port: 6881
      targetPort: 6881
-  externalIPs: 
-    - 10.1.1.1
   selector:
     app: utorrent
-  type: LoadBalancer
+  type: NodePort
 status:
   loadBalancer: {}
 
