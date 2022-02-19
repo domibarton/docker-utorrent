@@ -63,6 +63,15 @@ then
   mkdir -p /utorrent/shared/torrent;
 fi
 
+chmod -R 755 /utorrent/shared/download;
+sudo chown -R :${USER} /utorrent/shared/download;
+
+chmod -R 755 /utorrent/shared/done;
+sudo chown -R :${USER} /utorrent/shared/done;
+
+chmod -R 755 /utorrent/shared/torrent;
+sudo chown -R :${USER} /utorrent/shared/torrent;
+
 
 #
 # Finally, start utorrent.
