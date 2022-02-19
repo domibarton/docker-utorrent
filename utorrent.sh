@@ -43,7 +43,7 @@ if [ ! -d /utorrent/shared/download ];
 then
   echo 'Create download folder...'
   mkdir -p /utorrent/shared/download;
-  chmod -R 775 /utorrent/shared/download;
+  chmod -R 777 /utorrent/shared/download;
 fi
 
 #
@@ -53,7 +53,7 @@ if [ ! -d /utorrent/shared/done ];
 then
   echo 'Create done folder...'
   mkdir -p /utorrent/shared/done;
-  chmod -R 775 /utorrent/shared/done;
+  chmod -R 777 /utorrent/shared/done;
 fi
 
 #
@@ -63,12 +63,8 @@ if [ ! -d /utorrent/torrent ];
 then
   echo 'Create torrent folder...'
   mkdir -p /utorrent/shared/torrent;
-  chmod -R 775 /utorrent/shared/torrent;
+  chmod -R 777 /utorrent/shared/torrent;
 fi
-
-#sudo chown -R :${USER} /utorrent/shared/download;
-#sudo chown -R :${USER} /utorrent/shared/done;
-#sudo chown -R :${USER} /utorrent/shared/torrent;
 
 #
 # Finally, start utorrent.
