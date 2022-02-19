@@ -151,7 +151,7 @@ spec:
   - host: utorrent.nb41.tech
     http:
       paths:
-      - path: /
+      - path: /gui/web/index.html
         pathType: Prefix
         backend:
           service:
