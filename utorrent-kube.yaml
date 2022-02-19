@@ -64,9 +64,6 @@ spec:
     - 10.1.1.200
   selector:
     app: utorrent
-  type: LoadBalancer
-status:
-  loadBalancer: {}
 
 ---
 
