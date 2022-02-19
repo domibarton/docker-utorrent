@@ -63,7 +63,9 @@ spec:
   selector:
     app: utorrent
   type: NodePort
-
+status:
+  loadBalancer: {}
+  
 ---
 
 apiVersion: apps/v1
