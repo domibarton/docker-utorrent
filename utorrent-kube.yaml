@@ -131,7 +131,7 @@ spec:
 
 ---
 
-apiVersion: extensions/v1beta1
+apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: ut-ingress
@@ -151,11 +151,17 @@ spec:
   - host: utorrent.nb41.tech
     http:
       paths:
-      - path: /gui/web/index.html
+      - path: /gui
+        pathType: Prefix
         backend:
-          serviceName: ut-service
-          servicePort: 8080
+          service:
+            name: ut-service
+            port:
+              number: 8080
       - path: /
+        pathType: Prefix
         backend:
-          serviceName: ut-service
-          servicePort: 6881
+          service:
+            name: ut-service
+            port:
+              number: 6881
