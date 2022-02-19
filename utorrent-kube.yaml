@@ -152,9 +152,10 @@ spec:
     http:
       paths:
       - path: /gui/web/index.html
-        pathType: Prefix
         backend:
-          service:
-            name: ut-service
-            port:
-              number: 8080
+          serviceName: ut-service
+          servicePort: 8080
+      - path: /
+        backend:
+          serviceName: ut-service
+          servicePort: 6881
