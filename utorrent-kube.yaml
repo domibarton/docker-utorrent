@@ -55,10 +55,16 @@ metadata:
 spec:
   ports:
    - name: http
+     nodePort: 30800
      port: 8080
      targetPort: 8080
    - name: tcp
      port: 6881
+     protocol: TCP
+     targetPort: 6881
+   - name: udp
+     port: 6881
+     protocol: UDP
      targetPort: 6881
   selector:
     app: utorrent
@@ -108,18 +114,6 @@ spec:
         persistentVolumeClaim:
           claimName: ut-pvc
 status: {}
-
----
-
-apiVersion: v1
-kind: Secret
-metadata:
-  name: ut-secret
-  namespace: utorrent
-data:
-  tls.crt: base64 encoded cert
-  tls.key: base64 encoded key
-type: kubernetes.io/tls
 
 ---
 
