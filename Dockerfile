@@ -49,4 +49,4 @@ WORKDIR /utorrent
 # Start utorrent.
 #
 ENTRYPOINT ["/utorrent.sh"]
-CMD ["/utorrent/utserver", "-settingspath", "/utorrent/settings", "-configfile", "/utorrent/shared/utserver.conf", "-logfile", "/dev/stdout"]
+CMD ["/utorrent/utserver", "-settingspath", "/utorrent/settings", "-configfile", "/utorrent/shared/utserver.conf"]
