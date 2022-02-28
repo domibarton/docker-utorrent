@@ -43,6 +43,11 @@ RUN set -eux; \
     chmod +x /utorrent/shared/utserver.conf
 
 #
+# Copy confd configs and templates
+#
+ADD --chown=utorrent:utorrent confd/ /etc/confd/
+
+#
 # Add utorrent init script.
 #
 ADD --chown=utorrent:utorrent utorrent.sh /
