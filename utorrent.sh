@@ -1,20 +1,78 @@
 #!/bin/bash
 
+set -e
+
+if [ -n "${DEBUG}" ]; then
+  set -x
+  DEBUG_FIND="-print"
+  CONFD_LOGLEVEL="-log-level debug"
+fi
+
 #
 # Display settings on standard out.
 #
-
-USER="utorrent"
 
 echo "-> Initializing......"
 echo "==========================================================="
 echo "-> utorrent settings:"
 echo "==========================================================="
 echo
-echo "  User:       ${USER}"
-echo "  UID:        ${UTORRENT_UID:=666}"
-echo "  GID:        ${UTORRENT_GID:=666}"
 echo " "
+
+CURRENT_UID=$(id -u)
+if [[ ${CURRENT_UID} != 0 ]]; then
+    echo "[WARN] Host UID/GID usage disabled because the container is not running under the root (current uid: ${CURRENT_UID})"
+    exec "$@"
+    exit
+fi
+
+# we find the host uid/gid by assuming the app directory belongs to the host
+if [ -z "${UID}" ]; then
+  UID=$(stat -c %u /data)
+fi
+if [ -z "${GID}" ]; then
+  GID=$(stat -c %g /data)
+fi
+
+DO_CHOWN=0
+
+# If the docker user doesn't share the same uid, change it so that it does
+if [[ ${UID}  -ne $(id -u utorrent) ]] && [[ ${UID} != 0 ]]; then
+  echo "[$(date -u "+%FT%TZ")] Data dir owner does not met utorrent user"
+  echo "[$(date -u "+%FT%TZ")] Changing utorrent user UID to ${UID}"
+  usermod -o -u ${UID} utorrent
+  DO_CHOWN=1
+fi
+
+if [[ ${GID} -ne $(id -g utorrent) ]] && [[ ${GID} != 0 ]]; then
+  echo "[$(date -u "+%FT%TZ")] Data dir group does not met utorrent user group"
+  echo "[$(date -u "+%FT%TZ")] Changing utorrent user group GID to ${GID}"
+  groupmod -o -g ${GID} utorrent
+  DO_CHOWN=1
+fi
+
+# also update the file uid/gid for files in the docker home directory
+# skip the mounted "app" dir because we don't want any changes to mounted file ownership
+if [[ ${DO_CHOWN} -ne 0 ]]; then
+  echo "[$(date -u "+%FT%TZ")] Changing ownership of /utorrent dir"
+  find /utorrent -not \( -user utorrent -group utorrent \) ${DEBUG_FIND} -exec chown utorrent:utorrent {} \;
+
+  echo "[$(date -u "+%FT%TZ")] Changing ownership of /data dir"
+  find /data -not \( -user utorrent -group utorrent \) ${DEBUG_FIND} -exec chown utorrent:utorrent {} \;
+fi
+
+IFS=',' read -r -a DIR_DOWNLOAD <<< "${dir_download}"
+for d in "${DIR_DOWNLOAD[@]}"; do
+  if [[ ${d} != /* ]]; then
+    d=/data/${d}
+  fi
+  echo "[$(date -u "+%FT%TZ")] Ensure dir exists: ${d}"
+  mkdir -p ${d}
+  if [[ ${DO_CHOWN} -ne 0 ]]; then
+    echo "[$(date -u "+%FT%TZ")] Changing ownership of ${d} dir"
+    find ${d} -not \( -user utorrent -group utorrent \) ${DEBUG_FIND} -exec chown utorrent:utorrent {} \;
+  fi
+done
 
 #
 # Symlinking webui.zip to shared path.
@@ -27,49 +85,10 @@ then
 fi
 
 #
-# Symlinking tserver.conf to shared path.
-#
-if [[ ! -e /utorrent/shared/utserver.conf ]]
-then
-    echo 'MSG: Symlinking utserver.conf to /shared...'
-    ln -s /utorrent/utserver.conf /utorrent/shared/utserver.conf
-    echo "MSG: [DONE]"
-fi
-
-#
-# Create download folder.
-#
-if [ ! -d /utorrent/shared/download ]; 
-then
-  echo 'Create download folder...'
-  mkdir -p /utorrent/shared/download;
-fi
-
-#
-# Create done folder.
-#
-if [ ! -d /utorrent/shared/done ]; 
-then
-  echo 'Create done folder...'
-  mkdir -p /utorrent/shared/done;
-fi
-
-#
-# Create torrent folder.
-#
-if [ ! -d /utorrent/torrent ]; 
-then
-  echo 'Create torrent folder...'
-  mkdir -p /utorrent/shared/torrent;
-fi
-
-echo 'Set Permission to folder...'
-chmod -R 777 /utorrent;
-
-#
 # Finally, start utorrent.
 #
 echo " "
 echo '-> Starting utorrent server......'
-exec su -pc "./utserver -configfile /utorrent/shared/utserver.conf -logfile /utorrent/shared/utserver.log" ${USER}
+sudo -E -u utorrent -g utorrent -- /confd -onetime -backend env ${CONFD_LOGLEVEL} || exit 13
+exec sudo -E -u utorrent -g utorrent -- "$@"
 echo '#################################### UTSERVER ####################################'
