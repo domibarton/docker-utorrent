@@ -28,10 +28,10 @@ fi
 
 # we find the host uid/gid by assuming the app directory belongs to the host
 if [ -z "${UID}" ]; then
-  UID=$(stat -c %u /data)
+  UID=$(stat -c %u /utorrent)
 fi
 if [ -z "${GID}" ]; then
-  GID=$(stat -c %g /data)
+  GID=$(stat -c %g /utorrent)
 fi
 
 DO_CHOWN=0
@@ -55,24 +55,8 @@ fi
 # skip the mounted "app" dir because we don't want any changes to mounted file ownership
 if [[ ${DO_CHOWN} -ne 0 ]]; then
   echo "[$(date -u "+%FT%TZ")] Changing ownership of /utorrent dir"
-  find /utorrent -not \( -user utorrent -group utorrent \) ${DEBUG_FIND} -exec chown utorrent:utorrent {} \;
-
-  echo "[$(date -u "+%FT%TZ")] Changing ownership of /data dir"
-  find /data -not \( -user utorrent -group utorrent \) ${DEBUG_FIND} -exec chown utorrent:utorrent {} \;
+  find /utorrent -not \( -user utorrent -group utorrent \) ${DEBUG_FIND} -exec chown -R utorrent:utorrent {} \;
 fi
-
-IFS=',' read -r -a DIR_DOWNLOAD <<< "${dir_download}"
-for d in "${DIR_DOWNLOAD[@]}"; do
-  if [[ ${d} != /* ]]; then
-    d=/data/${d}
-  fi
-  echo "[$(date -u "+%FT%TZ")] Ensure dir exists: ${d}"
-  mkdir -p ${d}
-  if [[ ${DO_CHOWN} -ne 0 ]]; then
-    echo "[$(date -u "+%FT%TZ")] Changing ownership of ${d} dir"
-    find ${d} -not \( -user utorrent -group utorrent \) ${DEBUG_FIND} -exec chown utorrent:utorrent {} \;
-  fi
-done
 
 #
 # Symlinking webui.zip to shared path.
