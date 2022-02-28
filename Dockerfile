@@ -1,6 +1,8 @@
 FROM ubuntu:18.04
 LABEL Maintainer="Yuri L Chuk"
 
+ARG CONFD_VERSION=0.16.0
+
 #
 # Create user and group for utorrent.
 #
@@ -20,6 +22,9 @@ RUN echo '--> Installing packages and utserver...'; \
     apt-get -y clean; \
     rm -rf /var/lib/apt/lists/*; \
     rm -rf /var/cache/apt/*; \
+    echo '--> Setup confd'; \
+    curl -fSL --output /confd https://github.com/kelseyhightower/confd/releases/download/v${CONFD_VERSION}/confd-${CONFD_VERSION}-linux-amd64; \
+    chmod +x /confd; \
     echo '--> Make dirs'; \
     mkdir \
         /utorrent/shared/download \
@@ -49,4 +54,4 @@ WORKDIR /utorrent
 # Start utorrent.
 #
 ENTRYPOINT ["/utorrent.sh"]
-CMD ["/utorrent/utserver", "-settingspath", "/utorrent/settings", "-configfile", "/utorrent/shared/utserver.conf"]
+CMD ["/utorrent/utserver", "-settingspath", "/utorrent/settings", "-configfile", "/utorrent/shared/utserver.conf", "-logfile", "/dev/stdout"]
