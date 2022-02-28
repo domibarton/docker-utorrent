@@ -33,9 +33,7 @@ RUN echo '--> Installing packages and utserver...'; \
 # Add config file.
 #
 ADD utserver.conf /utorrent/shared/utserver.conf
-RUN set -eux; \
-    echo '--> Adding Configs'; \
-    chmod +x /utorrent/utserver.conf
+RUN set -eux; chmod +x /utorrent/utserver.conf
 
 #
 # Add utorrent init script.
