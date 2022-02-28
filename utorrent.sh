@@ -73,5 +73,6 @@ fi
 #
 echo " "
 echo '-> Starting utorrent server......'
+echo "$@"
 exec sudo -E -u utorrent -g utorrent -- "$@"
 echo '#################################### UTSERVER ####################################'
