@@ -1,4 +1,4 @@
 [template]
 src = "utserver.conf.tmpl"
-dest = "/utorrent/utserver.conf"
+dest = "/utorrent/shared/utserver.conf"
 keys = []
