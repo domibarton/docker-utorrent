@@ -14,7 +14,7 @@ RUN set -eux; \
 #
 RUN echo '--> Installing packages and utserver...'; \
     apt-get update; \
-    apt-get install -qy curl sudo openssl unrar vim nfs-common; \
+    apt-get install -qy curl sudo openssl libssl1.0.0 libssl-dev vim nfs-common; \
     curl -s http://download-new.utorrent.com/endpoint/utserver/os/linux-x64-ubuntu-13-04/track/beta/ | tar xzf - --strip-components 1 -C utorrent; \
     apt-get -y autoremove; \
     apt-get -y clean; \
