@@ -35,14 +35,6 @@ RUN echo '--> Installing packages and utserver...'; \
     chown -R utorrent:utorrent /utorrent;
 
 #
-# Add config file.
-#
-ADD utserver.conf /utorrent/shared/utserver.conf
-RUN set -eux; \
-    echo '--> Adding Configs'; \
-    chmod +x /utorrent/shared/utserver.conf
-
-#
 # Copy confd configs and templates
 #
 ADD --chown=utorrent:utorrent confd/ /etc/confd/
