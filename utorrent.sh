@@ -59,16 +59,6 @@ if [[ ${DO_CHOWN} -ne 0 ]]; then
 fi
 
 #
-# Symlinking webui.zip to shared path.
-#
-if [[ ! -e /utorrent/shared/webui.zip ]]
-then
-    echo 'MSG: Symlinking webui.zip to /shared...'
-    ln -s /utorrent/webui.zip /utorrent/shared/webui.zip
-    echo "MSG: [DONE]"
-fi
-
-#
 # Finally, start utorrent.
 #
 echo " "
