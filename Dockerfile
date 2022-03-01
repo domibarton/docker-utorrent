@@ -22,9 +22,6 @@ RUN echo '--> Installing packages and utserver...'; \
     apt-get -y clean; \
     rm -rf /var/lib/apt/lists/*; \
     rm -rf /var/cache/apt/*; \
-    echo '--> Setup webui'; \
-    cd /utorrent; \
-    unzip ./webui.zip; \
     echo '--> Setup confd'; \
     curl -fSL --output /confd https://github.com/kelseyhightower/confd/releases/download/v${CONFD_VERSION}/confd-${CONFD_VERSION}-linux-amd64; \
     chmod +x /confd; \
