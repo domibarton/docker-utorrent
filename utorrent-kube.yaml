@@ -55,22 +55,19 @@ metadata:
 spec:
   ports:
    - name: http
-     nodePort: 30800
      port: 8080
      targetPort: 8080
    - name: tcp
-     nodePort: 31770
      port: 6881
      protocol: TCP
      targetPort: 6881
    - name: udp
-     nodePort: 31770
      port: 6881 
      protocol: UDP
      targetPort: 6881
   selector:
     app: utorrent
-  type: NodePort
+  type: LoadBalancer
   externalTrafficPolicy: Local
   internalTrafficPolicy: Local
 status:
