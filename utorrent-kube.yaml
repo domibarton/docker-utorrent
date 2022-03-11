@@ -54,12 +54,11 @@ metadata:
   namespace: utorrent
 spec:
   ports:
-   - name: http
+   - protocol: TCP
      port: 8080
      targetPort: 8080
-   - name: tcp
+   - protocol: TCP
      port: 6881
-     protocol: TCP
      targetPort: 6881
   selector:
     app: utorrent
