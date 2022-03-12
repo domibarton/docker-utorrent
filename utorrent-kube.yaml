@@ -55,15 +55,11 @@ metadata:
 spec:
   ports:
    - protocol: TCP
-     name: UI
+     name: ui
      port: 8080
      targetPort: 8080
-   - protocol: TCP
-     name: TCP
-     port: 6881
-     targetPort: 6881
    - protocol: UDP
-     name: UDP
+     name: udp
      port: 6881
      targetPort: 6881
   selector:
