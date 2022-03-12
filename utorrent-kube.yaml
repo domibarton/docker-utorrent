@@ -60,6 +60,9 @@ spec:
    - protocol: TCP
      port: 6881
      targetPort: 6881
+   - protocol: UDP
+     port: 6881
+     targetPort: 6881
   selector:
     app: utorrent
   type: LoadBalancer
@@ -87,10 +90,10 @@ spec:
     spec:
       containers:
       - env:
-        - name: HOST_GID
-          value: "1002"
-        - name: HOST_UID
-          value: "1002"
+        - name: GID
+          value: "1001"
+        - name: UID
+          value: "1001"
         image: yurilchuk/utorrent-kubernetes:latest
         name: utorrent
         ports:
