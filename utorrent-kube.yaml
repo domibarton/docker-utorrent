@@ -58,13 +58,19 @@ spec:
      name: ui
      port: 8080
      targetPort: 8080
+   - protocol: TCP
+     name: tcp
+     port: 6881
+     targetPort: 6881
    - protocol: UDP
      name: udp
      port: 6881
      targetPort: 6881
+  externalIPs: 
+    - 10.1.100.5
   selector:
     app: utorrent
-  type: LoadBalancer
+  type: NodePort
 status:
   loadBalancer: {}
   
